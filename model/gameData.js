@@ -1,13 +1,13 @@
 // gameData.js
 
 // Game state variables
-let xp = 0;                 // Player experience points
-let health = 100;           // Player health
-let gold = 50;              // Player gold amount
-let currentWeapon = 0;      // Index of the current weapon in use
-let fighting;               // Index of the monster currently being fought
-let monsterHealth;          // Health of the current monster
-let inventory = ["stick"];  // Player's inventory containing items
+let xp = 0;
+let health = 100;
+let gold = 50;
+let currentWeapon = 0;
+let fighting;
+let monsterHealth;
+let inventory = ["stick"];
 
 // Weapons data
 const weapons = [
@@ -24,54 +24,54 @@ const monsters = [
   { name: "dragon", level: 20, health: 300 }
 ];
 
-// Locations data
+// Locations data without function references
 const locations = [
   {
     name: "town square",
     "button text": ["Go to store", "Go to cave", "Fight dragon"],
-    "button functions": [goStore, goCave, fightDragon],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You are in the town square. You see a sign that says \"Store\"."
   },
   {
     name: "store",
     "button text": ["Buy 10 health (10 gold)", "Buy weapon (30 gold)", "Go to town square"],
-    "button functions": [buyHealth, buyWeapon, goTown],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You enter the store."
   },
   {
     name: "cave",
     "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
-    "button functions": [fightSlime, fightBeast, goTown],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You enter the cave. You see some monsters."
   },
   {
     name: "fight",
     "button text": ["Attack", "Dodge", "Run"],
-    "button functions": [attack, dodge, goTown],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You are fighting a monster."
   },
   {
     name: "kill monster",
     "button text": ["Go to town square", "Go to town square", "Go to town square"],
-    "button functions": [goTown, goTown, easterEgg],
+    "button functions": [],  // Leave empty or use placeholder values
     text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
   },
   {
     name: "lose",
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
-    "button functions": [restart, restart, restart],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You die. &#x2620;"
   },
   { 
     name: "win", 
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
-    "button functions": [restart, restart, restart], 
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;" 
   },
   {
     name: "easter egg",
     "button text": ["2", "8", "Go to town square?"],
-    "button functions": [pickTwo, pickEight, goTown],
+    "button functions": [],  // Leave empty or use placeholder values
     text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
   }
 ];

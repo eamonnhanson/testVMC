@@ -1,6 +1,6 @@
 // gameController.js
 
-// Initialize button elements
+// Select button elements from the DOM
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -12,7 +12,7 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
-// Function to update the game location
+// Function Definitions
 function update(location) {
   monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
@@ -24,10 +24,17 @@ function update(location) {
   text.innerHTML = location.text;
 }
 
-// Game control functions
-function goTown() { update(locations[0]); }
-function goStore() { update(locations[1]); }
-function goCave() { update(locations[2]); }
+function goTown() {
+  update(locations[0]);
+}
+
+function goStore() {
+  update(locations[1]);
+}
+
+function goCave() {
+  update(locations[2]);
+}
 
 function buyHealth() {
   if (gold >= 10) {
@@ -72,9 +79,20 @@ function sellWeapon() {
   }
 }
 
-function fightSlime() { fighting = 0; goFight(); }
-function fightBeast() { fighting = 1; goFight(); }
-function fightDragon() { fighting = 2; goFight(); }
+function fightSlime() {
+  fighting = 0;
+  goFight();
+}
+
+function fightBeast() {
+  fighting = 1;
+  goFight();
+}
+
+function fightDragon() {
+  fighting = 2;
+  goFight();
+}
 
 function goFight() {
   update(locations[3]);
@@ -116,7 +134,9 @@ function getMonsterAttackValue(level) {
   return hit > 0 ? hit : 0;
 }
 
-function isMonsterHit() { return Math.random() > .2 || health < 20; }
+function isMonsterHit() {
+  return Math.random() > .2 || health < 20;
+}
 
 function dodge() {
   text.innerText = "You dodge the attack from the " + monsters[fighting].name;
@@ -130,8 +150,14 @@ function defeatMonster() {
   update(locations[4]);
 }
 
-function lose() { update(locations[5]); }
-function winGame() { update(locations[6]); }
+function lose() {
+  update(locations[5]);
+}
+
+function winGame() {
+  update(locations[6]);
+}
+
 function restart() {
   xp = 0;
   health = 100;
@@ -144,9 +170,17 @@ function restart() {
   goTown();
 }
 
-function easterEgg() { update(locations[7]); }
-function pickTwo() { pick(2); }
-function pickEight() { pick(8); }
+function easterEgg() {
+  update(locations[7]);
+}
+
+function pickTwo() {
+  pick(2);
+}
+
+function pickEight() {
+  pick(8);
+}
 
 function pick(guess) {
   const numbers = [];
@@ -171,7 +205,19 @@ function pick(guess) {
   }
 }
 
-// Initialize buttons with default actions
-button1.onclick = goStore;
-button2.onclick = goCave;
-button3.onclick = fightDragon;
+// Dynamically assign functions to locations after both files have loaded
+document.addEventListener('DOMContentLoaded', function () {
+  locations[0]["button functions"] = [goStore, goCave, fightDragon];
+  locations[1]["button functions"] = [buyHealth, buyWeapon, goTown];
+  locations[2]["button functions"] = [fightSlime, fightBeast, goTown];
+  locations[3]["button functions"] = [attack, dodge, goTown];
+  locations[4]["button functions"] = [goTown, goTown, easterEgg];
+  locations[5]["button functions"] = [restart, restart, restart];
+  locations[6]["button functions"] = [restart, restart, restart];
+  locations[7]["button functions"] = [pickTwo, pickEight, goTown];
+
+  // Initialize buttons with default actions
+  button1.onclick = goStore;
+  button2.onclick = goCave;
+  button3.onclick = fightDragon;
+});
